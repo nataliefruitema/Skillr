@@ -1,0 +1,54 @@
+﻿@model Skillr.Models.Skills
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Skills</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Skill)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Skill)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillLevel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SkillLevel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Certificate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Certificate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CertificateValidFrom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CertificateValidFrom)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CertificateValidUntil)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CertificateValidUntil)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.YearsExperience)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.YearsExperience)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

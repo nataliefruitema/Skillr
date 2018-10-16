@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Skillr.Models.Skills>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Skill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SkillLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Certificate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CertificateValidFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CertificateValidUntil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearsExperience)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skill)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SkillLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Certificate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CertificateValidFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CertificateValidUntil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearsExperience)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
