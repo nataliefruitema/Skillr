@@ -10,12 +10,13 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-<form>
+<form asp-controller="Projects" asp-action="Index" method="get">
     <p>
-        Search Title <input type="text" name="Search" />
+        ProjectName: <input type="text" name="SearchTerm">
         <input type="submit" value="Filter" />
     </p>
 </form>
+
 <table class="table">
     <thead>
         <tr>
