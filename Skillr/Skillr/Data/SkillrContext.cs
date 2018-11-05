@@ -9,7 +9,7 @@ namespace Skillr.Models
 {
     public class SkillrContext : DbContext
     {
-        public SkillrContext(DbContextOptions<SkillrContext> options)
+        public SkillrContext (DbContextOptions<SkillrContext> options)
             : base(options)
         {
         }
@@ -19,7 +19,5 @@ namespace Skillr.Models
         public DbSet<Skillr.Models.Skills> Skills { get; set; }
 
         public DbSet<Skillr.Models.Projects> Projects { get; set; }
-
-        public DbSet<Skillr.Models.Manager> Manager { get; set; }
     }
 }

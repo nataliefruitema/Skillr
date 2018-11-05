@@ -21,7 +21,8 @@ namespace Skillr.Controllers
         // GET: Projects
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Projects.ToListAsync());
+            var skillrContext = _context.Projects.Include(p => p.Person);
+            return View(await skillrContext.ToListAsync());
         }
 
         // GET: Projects/Details/5
@@ -33,6 +34,7 @@ namespace Skillr.Controllers
             }
 
             var projects = await _context.Projects
+                .Include(p => p.Person)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (projects == null)
             {
@@ -45,6 +47,7 @@ namespace Skillr.Controllers
         // GET: Projects/Create
         public IActionResult Create()
         {
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "ID");
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace Skillr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,ProjectNR,ProjectName,ProjectDuration,ProjectStartDate,ProjectEndDate")] Projects projects)
+        public async Task<IActionResult> Create([Bind("ID,ProjectNR,ProjectName,ProjectDuration,ProjectStartDate,ProjectEndDate,PersonID")] Projects projects)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace Skillr.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "ID", projects.PersonID);
             return View(projects);
         }
 
@@ -77,6 +81,7 @@ namespace Skillr.Controllers
             {
                 return NotFound();
             }
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "ID", projects.PersonID);
             return View(projects);
         }
 
@@ -85,7 +90,7 @@ namespace Skillr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,ProjectNR,ProjectName,ProjectDuration,ProjectStartDate,ProjectEndDate")] Projects projects)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,ProjectNR,ProjectName,ProjectDuration,ProjectStartDate,ProjectEndDate,PersonID")] Projects projects)
         {
             if (id != projects.ID)
             {
@@ -112,6 +117,7 @@ namespace Skillr.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "ID", projects.PersonID);
             return View(projects);
         }
 
@@ -124,6 +130,7 @@ namespace Skillr.Controllers
             }
 
             var projects = await _context.Projects
+                .Include(p => p.Person)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (projects == null)
             {
