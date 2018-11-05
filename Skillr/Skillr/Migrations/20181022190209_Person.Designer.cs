@@ -10,8 +10,8 @@ using Skillr.Models;
 namespace Skillr.Migrations
 {
     [DbContext(typeof(SkillrContext))]
-    [Migration("20181016132054_Projects")]
-    partial class Projects
+    [Migration("20181022190209_Person")]
+    partial class Person
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,15 +27,21 @@ namespace Skillr.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(15);
 
                     b.Property<string>("Insertion");
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.Property<DateTime>("OnProjectUntil");
 
                     b.Property<bool>("PersonAvailable");
+
+                    b.Property<int>("SkillID");
 
                     b.HasKey("ID");
 
@@ -54,9 +60,12 @@ namespace Skillr.Migrations
 
                     b.Property<DateTime>("ProjectEndDate");
 
-                    b.Property<string>("ProjectNR");
+                    b.Property<string>("ProjectNR")
+                        .IsRequired();
 
-                    b.Property<string>("ProjectName");
+                    b.Property<string>("ProjectName")
+                        .IsRequired()
+                        .HasMaxLength(15);
 
                     b.Property<DateTime>("ProjectStartDate");
 
@@ -79,7 +88,11 @@ namespace Skillr.Migrations
 
                     b.Property<DateTime>("CertificateValidUntil");
 
-                    b.Property<string>("Skill");
+                    b.Property<int?>("PersonID");
+
+                    b.Property<string>("Skill")
+                        .IsRequired()
+                        .HasMaxLength(15);
 
                     b.Property<string>("SkillLevel");
 
@@ -87,15 +100,24 @@ namespace Skillr.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("PersonID");
+
                     b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("Skillr.Models.Projects", b =>
                 {
                     b.HasOne("Skillr.Models.Person", "Person")
-                        .WithMany()
+                        .WithMany("Projects")
                         .HasForeignKey("PersonID")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Skillr.Models.Skills", b =>
+                {
+                    b.HasOne("Skillr.Models.Person")
+                        .WithMany("Skills")
+                        .HasForeignKey("PersonID");
                 });
 #pragma warning restore 612, 618
         }

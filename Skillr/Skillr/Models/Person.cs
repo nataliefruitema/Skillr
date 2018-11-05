@@ -27,9 +27,9 @@ namespace Skillr.Models
         [DataType(DataType.Date)]       
         public DateTime OnProjectUntil { get; set; }
 
-        List<Skills> skills = new List<Skills>();
+        public int SkillID { get; set; }
+        public List<Skills> Skills { get; set; }
 
-        List<Projects> projects = new List<Projects>();
+        public List<Projects> Projects { get; set; }
     }
-    
 }

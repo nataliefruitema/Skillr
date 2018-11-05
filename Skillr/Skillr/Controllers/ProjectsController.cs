@@ -47,7 +47,7 @@ namespace Skillr.Controllers
         // GET: Projects/Create
         public IActionResult Create()
         {
-            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "ID");
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace Skillr.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "ID", projects.PersonID);
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", projects.PersonID);
             return View(projects);
         }
 
@@ -81,7 +81,7 @@ namespace Skillr.Controllers
             {
                 return NotFound();
             }
-            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "ID", projects.PersonID);
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", projects.PersonID);
             return View(projects);
         }
 
@@ -117,7 +117,7 @@ namespace Skillr.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "ID", projects.PersonID);
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", projects.PersonID);
             return View(projects);
         }
 

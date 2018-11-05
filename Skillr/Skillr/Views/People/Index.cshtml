@@ -27,6 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.OnProjectUntil)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SkillID)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -47,6 +50,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OnProjectUntil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SkillID)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
