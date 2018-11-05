@@ -15,17 +15,17 @@ namespace Skillr.Models
         [Required]
         public string Skill { get; set; }
 
-
-        [Display(Name = "SkillLevel on a scale of 1 - 10")]
-        [RegularExpression(@"[0-9]*$", ErrorMessage = "A number from 1 - 10 must be entered here")]
+        [StringLength(15, MinimumLength = 1)]
         public string SkillLevel { get; set; }
 
         public bool Certificate { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CertificateValidFrom { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CertificateValidUntil { get; set; }
 
         [Display(Name = "Duration of the project in years")]

@@ -18,10 +18,16 @@ namespace Skillr.Controllers
             _context = context;
         }
 
-        // GET: People
-        public async Task<IActionResult> Index()
+        //// GET: People
+        public async Task<IActionResult> Index(string searchTerm)
         {
-            return View(await _context.Person.ToListAsync());
+            var list = await _context.Person.ToListAsync();
+
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                list = list.Where(x => x.FirstName.ToLower().Contains(searchTerm.ToLower())).ToList();
+            }
+          return View(list);
         }
 
         // GET: People/Details/5
