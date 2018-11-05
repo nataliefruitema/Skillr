@@ -20,13 +20,15 @@ namespace Skillr.Models
         [Required]
         public string ProjectName { get; set; }
 
-        [Display(Name = "Duration of the project in weeks")]
+        [Display(Name = "Duration (weeks)")]
         public int ProjectDuration { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ProjectStartDate { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ProjectEndDate { get; set; }
 
         public int PersonID { get; set; }
