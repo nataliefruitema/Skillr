@@ -48,8 +48,8 @@ namespace Skillr.Controllers
         // GET: Managers/Create
         public IActionResult Create()
         {
-            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName");
-            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectNR");
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", "Insertion", "LastName");
+            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectName");
             return View();
         }
 
