@@ -25,14 +25,9 @@ namespace Skillr.Models
         public bool PersonAvailable { get; set; }
 
         // If person not available
-
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] 
         public DateTime OnProjectUntil { get; set; }
 
-        List<Skills> skills = new List<Skills>();
-
-        List<Projects> projects = new List<Projects>();
     }
-    
 }

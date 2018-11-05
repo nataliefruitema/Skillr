@@ -30,11 +30,5 @@ namespace Skillr.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ProjectEndDate { get; set; }
-
-        public int PersonID { get; set; }
-
-        public Person Person { get; set; }
-
-
     }
 }

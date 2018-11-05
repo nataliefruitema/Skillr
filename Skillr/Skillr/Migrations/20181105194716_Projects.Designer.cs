@@ -10,8 +10,8 @@ using Skillr.Models;
 namespace Skillr.Migrations
 {
     [DbContext(typeof(SkillrContext))]
-    [Migration("20181016132040_Skills")]
-    partial class Skills
+    [Migration("20181105194716_Projects")]
+    partial class Projects
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,19 +21,46 @@ namespace Skillr.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Skillr.Models.Manager", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PersonID");
+
+                    b.Property<string>("ProjectName");
+
+                    b.Property<int>("ProjectsID");
+
+                    b.Property<int>("SkillsID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PersonID");
+
+                    b.HasIndex("ProjectsID");
+
+                    b.ToTable("Manager");
+                });
+
             modelBuilder.Entity("Skillr.Models.Person", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(15);
 
                     b.Property<string>("Insertion");
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
-                    b.Property<DateTime>("OnProjectUntil");
+                    b.Property<DateTime?>("OnProjectUntil");
 
                     b.Property<bool>("PersonAvailable");
 
@@ -48,21 +75,20 @@ namespace Skillr.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("PersonID");
-
                     b.Property<int>("ProjectDuration");
 
                     b.Property<DateTime>("ProjectEndDate");
 
-                    b.Property<string>("ProjectNR");
+                    b.Property<string>("ProjectNR")
+                        .IsRequired();
 
-                    b.Property<string>("ProjectName");
+                    b.Property<string>("ProjectName")
+                        .IsRequired()
+                        .HasMaxLength(15);
 
                     b.Property<DateTime>("ProjectStartDate");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("PersonID");
 
                     b.ToTable("Projects");
                 });
@@ -79,7 +105,11 @@ namespace Skillr.Migrations
 
                     b.Property<DateTime>("CertificateValidUntil");
 
-                    b.Property<string>("Skill");
+                    b.Property<int?>("ManagerID");
+
+                    b.Property<string>("Skill")
+                        .IsRequired()
+                        .HasMaxLength(15);
 
                     b.Property<string>("SkillLevel");
 
@@ -87,15 +117,29 @@ namespace Skillr.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("ManagerID");
+
                     b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("Skillr.Models.Projects", b =>
+            modelBuilder.Entity("Skillr.Models.Manager", b =>
                 {
                     b.HasOne("Skillr.Models.Person", "Person")
                         .WithMany()
                         .HasForeignKey("PersonID")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Skillr.Models.Projects", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectsID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Skillr.Models.Skills", b =>
+                {
+                    b.HasOne("Skillr.Models.Manager")
+                        .WithMany("Skills")
+                        .HasForeignKey("ManagerID");
                 });
 #pragma warning restore 612, 618
         }

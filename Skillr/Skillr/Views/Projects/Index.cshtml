@@ -35,9 +35,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProjectEndDate)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Person)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -58,9 +55,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProjectEndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Person.ID)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

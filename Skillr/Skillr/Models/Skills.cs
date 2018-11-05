@@ -30,10 +30,6 @@ namespace Skillr.Models
 
         [Display(Name = "Duration of the project in years")]
         public int YearsExperience { get; set; }
-
-        List <Person> person = new List<Person>();
-
-
     }
 
 }
