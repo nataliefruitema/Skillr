@@ -28,11 +28,5 @@ namespace Skillr.Models
 
         [DataType(DataType.Date)]
         public DateTime ProjectEndDate { get; set; }
-
-        public int PersonID { get; set; }
-
-        public Person Person { get; set; }
-
-
     }
 }

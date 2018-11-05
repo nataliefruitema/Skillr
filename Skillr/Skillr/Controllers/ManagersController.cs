@@ -9,22 +9,23 @@ using Skillr.Models;
 
 namespace Skillr.Controllers
 {
-    public class ProjectsController : Controller
+    public class ManagersController : Controller
     {
         private readonly SkillrContext _context;
 
-        public ProjectsController(SkillrContext context)
+        public ManagersController(SkillrContext context)
         {
             _context = context;
         }
 
-        // GET: Projects
+        // GET: Managers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Projects.ToListAsync());
+            var skillrContext = _context.Manager.Include(m => m.Person).Include(m => m.Project);
+            return View(await skillrContext.ToListAsync());
         }
 
-        // GET: Projects/Details/5
+        // GET: Managers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +33,45 @@ namespace Skillr.Controllers
                 return NotFound();
             }
 
-            var projects = await _context.Projects
+            var manager = await _context.Manager
+                .Include(m => m.Person)
+                .Include(m => m.Project)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (projects == null)
+            if (manager == null)
             {
                 return NotFound();
             }
 
-            return View(projects);
+            return View(manager);
         }
 
-        // GET: Projects/Create
+        // GET: Managers/Create
         public IActionResult Create()
         {
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName");
+            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectNR");
             return View();
         }
 
-        // POST: Projects/Create
+        // POST: Managers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,ProjectNR,ProjectName,ProjectDuration,ProjectStartDate,ProjectEndDate")] Projects projects)
+        public async Task<IActionResult> Create([Bind("ID,ProjectName,ProjectsID,PersonID,SkillsID")] Manager manager)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(projects);
+                _context.Add(manager);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(projects);
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", manager.PersonID);
+            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectNR", manager.ProjectsID);
+            return View(manager);
         }
 
-        // GET: Projects/Edit/5
+        // GET: Managers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +79,24 @@ namespace Skillr.Controllers
                 return NotFound();
             }
 
-            var projects = await _context.Projects.FindAsync(id);
-            if (projects == null)
+            var manager = await _context.Manager.FindAsync(id);
+            if (manager == null)
             {
                 return NotFound();
             }
-            return View(projects);
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", manager.PersonID);
+            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectNR", manager.ProjectsID);
+            return View(manager);
         }
 
-        // POST: Projects/Edit/5
+        // POST: Managers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,ProjectNR,ProjectName,ProjectDuration,ProjectStartDate,ProjectEndDate")] Projects projects)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,ProjectName,ProjectsID,PersonID,SkillsID")] Manager manager)
         {
-            if (id != projects.ID)
+            if (id != manager.ID)
             {
                 return NotFound();
             }
@@ -96,12 +105,12 @@ namespace Skillr.Controllers
             {
                 try
                 {
-                    _context.Update(projects);
+                    _context.Update(manager);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProjectsExists(projects.ID))
+                    if (!ManagerExists(manager.ID))
                     {
                         return NotFound();
                     }
@@ -112,10 +121,12 @@ namespace Skillr.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(projects);
+            ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", manager.PersonID);
+            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectNR", manager.ProjectsID);
+            return View(manager);
         }
 
-        // GET: Projects/Delete/5
+        // GET: Managers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +134,32 @@ namespace Skillr.Controllers
                 return NotFound();
             }
 
-            var projects = await _context.Projects
+            var manager = await _context.Manager
+                .Include(m => m.Person)
+                .Include(m => m.Project)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (projects == null)
+            if (manager == null)
             {
                 return NotFound();
             }
 
-            return View(projects);
+            return View(manager);
         }
 
-        // POST: Projects/Delete/5
+        // POST: Managers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var projects = await _context.Projects.FindAsync(id);
-            _context.Projects.Remove(projects);
+            var manager = await _context.Manager.FindAsync(id);
+            _context.Manager.Remove(manager);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProjectsExists(int id)
+        private bool ManagerExists(int id)
         {
-            return _context.Projects.Any(e => e.ID == id);
+            return _context.Manager.Any(e => e.ID == id);
         }
     }
 }

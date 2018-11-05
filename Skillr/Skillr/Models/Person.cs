@@ -25,11 +25,6 @@ namespace Skillr.Models
         // If person not available
  
         [DataType(DataType.Date)]       
-        public DateTime OnProjectUntil { get; set; }
-
-        public int SkillID { get; set; }
-        public List<Skills> Skills { get; set; }
-
-        public List<Projects> Projects { get; set; }
+        public DateTime? OnProjectUntil { get; set; }
     }
 }
