@@ -67,7 +67,7 @@ namespace Skillr.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", manager.PersonID);
-            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectNR", manager.ProjectsID);
+            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectName", manager.ProjectsID);
             return View(manager);
         }
 
@@ -85,7 +85,7 @@ namespace Skillr.Controllers
                 return NotFound();
             }
             ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", manager.PersonID);
-            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectNR", manager.ProjectsID);
+            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectName", manager.ProjectsID);
             return View(manager);
         }
 
@@ -122,7 +122,7 @@ namespace Skillr.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", manager.PersonID);
-            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectNR", manager.ProjectsID);
+            ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectName", manager.ProjectsID);
             return View(manager);
         }
 

@@ -22,7 +22,17 @@ namespace Skillr.Models
         [Required]
         public string LastName { get; set; }
 
-        public bool PersonAvailable { get; set; }
+        public bool PersonAvailable
+        {
+            get
+            {
+                if (DateTime.Today < OnProjectUntil) { return false; }
+
+                else { return true; }
+
+            }
+            set { }
+        }
 
         // If person not available
         [DataType(DataType.Date)]
