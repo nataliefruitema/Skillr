@@ -50,6 +50,7 @@ namespace Skillr.Controllers
         {
             ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", "Insertion", "LastName");
             ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectName");
+            ViewData["SkillsID"] = new SelectList(_context.Skills.Select(skill => new SelectListItem { Value = skill.Skill, Text = skill.Skill }).ToList());
             return View();
         }
 
@@ -68,6 +69,7 @@ namespace Skillr.Controllers
             }
             ViewData["PersonID"] = new SelectList(_context.Person, "ID", "FirstName", manager.PersonID);
             ViewData["ProjectsID"] = new SelectList(_context.Projects, "ID", "ProjectName", manager.ProjectsID);
+            ViewData["SkillsID"] = new SelectList(_context.Skills.Select(skill => new SelectListItem{ Value = skill.Skill, Text = skill.Skill }).ToList());
             return View(manager);
         }
 

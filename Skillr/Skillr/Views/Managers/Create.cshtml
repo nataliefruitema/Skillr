@@ -19,17 +19,48 @@
             </div>
             <div class="form-group">
                 <label asp-for="Project.ProjectName" class="control-label"></label>
-                <select asp-for="ProjectsID" class ="form-control" asp-items="ViewBag.ProjectsID"></select>
+                <select asp-for="ProjectsID" class="form-control" asp-items="ViewBag.ProjectsID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Person.FirstName" class="control-label"></label>
-                <select asp-for="PersonID" class ="form-control" asp-items="ViewBag.PersonID"></select>
+                <select asp-for="PersonID" class="form-control" asp-items="ViewBag.PersonID"></select>
             </div>
+
             <div class="form-group">
+                <fieldset class="form-add-skills">
+                    <label for="sets" class="col-md-2 control-label">Skills</label>
+                    <div class="col-md-10">
+                        <div class="add-skills">
+                            <div class="form-inline add-skill">
+                                <div class="form-group">
+                                    <label class="control-label">Skill</label>
+                                    <select class="form-control" asp-items="Model.GetAllSkills()"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Skills.First().Skill" class="control-label"></label>
+                                    <input asp-for="Skills.First().Skill" placeholder="SkillLevel" class="form-control" />
+                                    <span asp-validation-for="Skills.First().Skill" class="text-danger" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Skills.First().SkillLevel" class="control-label"></label>
+                                    <input asp-for="Skills.First().SkillLevel" class="form-control" />
+                                    <span asp-validation-for="Skills.First().SkillLevel" class="text-danger" />
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-remove-skill" data-toggle="tooltip" title="Remove Skill"><span class="glyphicon glyphicon-minus"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-add-skill">Add Skill</button>
+                    </div>
+                </fieldset>
+            </div>
+
+            @*<div class="form-group">
                 <label asp-for="SkillsID" class="control-label"></label>
                 <input asp-for="SkillsID" class="form-control" />
                 <span asp-validation-for="SkillsID" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
