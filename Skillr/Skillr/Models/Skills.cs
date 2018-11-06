@@ -9,8 +9,7 @@ namespace Skillr.Models
     public class Skills
     {
         public int ID { get; set; }
-
-
+        
         [StringLength(15, MinimumLength = 2)]
         [Required]
         public string Skill { get; set; }
@@ -18,17 +17,27 @@ namespace Skillr.Models
         [StringLength(15, MinimumLength = 1)]
         public string SkillLevel { get; set; }
 
-        public bool Certificate { get; set; }
+        public bool Certificate
+        {
+            get
+            {
+                if (DateTime.Today < CertificateValidFrom & DateTime.Today < CertificateValidUntil) { return false; }
+
+                else { return true; }
+
+            }
+            set { }
+        }
+                          
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? CertificateValidFrom { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime CertificateValidFrom { get; set; }
+        public DateTime? CertificateValidUntil { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime CertificateValidUntil { get; set; }
-
-        [Display(Name = "Duration of the project in years")]
+        [Display(Name = "Experience (months)")]
         public int YearsExperience { get; set; }
     }
 

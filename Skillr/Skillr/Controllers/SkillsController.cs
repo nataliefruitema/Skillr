@@ -19,9 +19,15 @@ namespace Skillr.Controllers
         }
 
         // GET: Skills
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm)
         {
-            return View(await _context.Skills.ToListAsync());
+            var list = await _context.Skills.ToListAsync();
+
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                list = list.Where(x => x.Skill.ToLower().Contains(searchTerm.ToLower())).ToList();
+            }
+            return View(list);
         }
 
         // GET: Skills/Details/5

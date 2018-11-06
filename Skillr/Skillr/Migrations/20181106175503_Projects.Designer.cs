@@ -10,8 +10,8 @@ using Skillr.Models;
 namespace Skillr.Migrations
 {
     [DbContext(typeof(SkillrContext))]
-    [Migration("20181105200840_Skillr")]
-    partial class Skillr
+    [Migration("20181106175503_Projects")]
+    partial class Projects
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -111,7 +111,8 @@ namespace Skillr.Migrations
                         .IsRequired()
                         .HasMaxLength(15);
 
-                    b.Property<string>("SkillLevel");
+                    b.Property<string>("SkillLevel")
+                        .HasMaxLength(15);
 
                     b.Property<int>("YearsExperience");
 

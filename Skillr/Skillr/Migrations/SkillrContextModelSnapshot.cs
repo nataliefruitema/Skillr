@@ -109,7 +109,8 @@ namespace Skillr.Migrations
                         .IsRequired()
                         .HasMaxLength(15);
 
-                    b.Property<string>("SkillLevel");
+                    b.Property<string>("SkillLevel")
+                        .HasMaxLength(15);
 
                     b.Property<int>("YearsExperience");
 

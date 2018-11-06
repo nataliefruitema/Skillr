@@ -77,7 +77,7 @@ namespace Skillr.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Skill = table.Column<string>(maxLength: 15, nullable: false),
-                    SkillLevel = table.Column<string>(nullable: true),
+                    SkillLevel = table.Column<string>(maxLength: 15, nullable: true),
                     Certificate = table.Column<bool>(nullable: false),
                     CertificateValidFrom = table.Column<DateTime>(nullable: false),
                     CertificateValidUntil = table.Column<DateTime>(nullable: false),

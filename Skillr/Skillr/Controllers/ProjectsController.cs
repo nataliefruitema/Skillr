@@ -19,9 +19,15 @@ namespace Skillr.Controllers
         }
 
         // GET: Projects
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm)
         {
-            return View(await _context.Projects.ToListAsync());
+            var list = await _context.Projects.ToListAsync();
+
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                list = list.Where(x => x.ProjectName.ToLower().Contains(searchTerm.ToLower())).ToList();
+            }
+            return View(list);
         }
 
         // GET: Projects/Details/5
