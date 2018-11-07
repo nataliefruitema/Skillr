@@ -2,43 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" hei>
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
+            <img class="d-block w-100" src="http://zirconprojects.com.au/wp-content/uploads/2015/07/Special-Projects-New.jpg" alt="ASP.NET" class="img-responsive"  height="200"/>
             <div class="carousel-caption" role="option">
                 <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
+                    Wondering what kind of projects we have?
                 </p>
             </div>
         </div>
+
         <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
+            <img class="d-block w-100" src="data:image/jpeg;base64,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" alt="Microsoft Azure" class="img-responsive" height="200"/>
             <div class="carousel-caption" role="option">
                 <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
+                   We give training for different skills
                 </p>
             </div>
         </div>
@@ -53,42 +36,24 @@
     </a>
 </div>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+<div>
+    <p>
+    <div>
+        <h2> Special Projects</h2>
+        <div>
+            We would like to see you at one of our offices of Special Project. Special Project is located at Amersfoort, Amsterdam, Eindhoven, Groningen, Rotterdam / Den Haag, Maastricht, Utrecht en Zwolle.
+        </div> <br />
+ </p>
+
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Contact
+        </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <b> Wesley Bekkers</b> <br />wesley.bekkers@specialprojects.nl <br /> +31 643485928 <br /> <br />
+            <b> Natalie Fruitema</b> <br />natalie.fruitema@specialprojects.nl <br /> +31 657625660
+        </div>
     </div>
 </div>
